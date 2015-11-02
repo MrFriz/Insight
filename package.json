@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "webpack-dev-server  -d --progress --colors",
+    "install": "webpack --progress --colors --optimize-minimize"
   },
   "author": "",
   "license": "ISC",
