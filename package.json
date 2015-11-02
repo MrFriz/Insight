@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server  -d --progress --colors",
-    "install": "webpack --progress --colors --optimize-minimize"
+    "start": "./node_modules/.bin/webpack-dev-server  -d --progress --colors",
+    "install": "./node_modules/.bin/webpack --progress --colors --optimize-minimize"
   },
   "author": "",
   "license": "ISC",
