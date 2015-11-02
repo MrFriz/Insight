@@ -1,12 +1,25 @@
 module.exports = {
-    entry: "./app/entry.js",
-    output: {
-        path: 'dist',
-        filename: "bundle.js"
+  entry: "./app/entry.js",
+  output:
+  {
+    path: 'dist',
+    filename: "bundle.js"
+  },
+  module:
+  {
+    loaders: [
+    {
+      test: /\.jsx?$/,
+      exclude: /(node_modules|bower_components)/,
+      loader: 'babel',
     },
-    module: {
-        loaders: [
-            { test: /\.css$/, loader: "style!css" }
-        ]
-    }
+    {
+      test: /\.css$/,
+      loader: "style!css"
+    }]
+  },
+  resolve:
+  {
+    modulesDirectories: ['node_modules', 'app']
+  }
 };
