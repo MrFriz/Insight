@@ -13,10 +13,12 @@
     "babel-core": "^6.0.16",
     "babel-loader": "^6.0.0",
     "file-loader": "^0.8.4",
+    "script-loader": "^0.6.1",
     "webpack": "^1.12.2",
     "webpack-dev-server": "^1.12.1"
   },
   "dependencies": {
-    "angular": "^1.4.7"
+    "angular": "^1.4.7",
+    "angular-animate": "^1.4.7"
   }
 }
