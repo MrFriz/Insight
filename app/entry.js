@@ -1,6 +1,6 @@
 // require assets
-require('file?name=index.html!./index.html')
+require('file?name=index.html!index.html')
 
 // require modules
-require('main');
+require('stats.core');
 require('sLogger');

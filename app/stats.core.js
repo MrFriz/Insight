@@ -1,7 +1,6 @@
 module.exports = require('angular').module(
-    'StatsApp',
+    'stats.core',
     [
         require('angular-animate')
     ]
 );
-

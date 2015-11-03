@@ -1,4 +1,4 @@
-class SLogger {
+module.exports = class SLogger {
     constructor() {
         this.events = {};
     }
@@ -6,6 +6,8 @@ class SLogger {
     add(time, event) {
         this.events[time] = event;
     }
-}
 
-module.exports = SLogger;
+    list() {
+        return require('angular').copy(this.events);
+    }
+};
