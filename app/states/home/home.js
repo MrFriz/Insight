@@ -9,5 +9,5 @@ exports.name = 'home';
 exports.config = {
     url: "/home",
     template: require('html!./home.html'),
-    controller: HomeCtrl
+    controller: ['$log', HomeCtrl]
 }
