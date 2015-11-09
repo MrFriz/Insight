@@ -1,7 +1,16 @@
 language: node_js
 node_js:
   - '4.2'
-script: bash ./deploy-ghpages.sh
+
+branches:
+  only:
+    - master
+
+install:
+ - npm install
+script:
+ - npm run build
+ - bash deploy-ghpages.sh
 env:
   global:
     - GH_REF: github.com/genuinegreg/Stats
