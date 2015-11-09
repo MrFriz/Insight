@@ -1,9 +1,7 @@
 #!/bin/bash
 set -e # exit with nonzero exit code if anything fails
 
-git rev-parse --abbrev-ref HEAD
-
-[ $(git rev-parse --abbrev-ref HEAD) == "master" ] || echo "not master"; exit 0
+[ $(git rev-parse --abbrev-ref HEAD) == "master" ] || echo "!master, don't publish"; exit 0
 
 # clear and re-create the out directory
 rm -rf dist || exit 0;
