@@ -1,6 +1,10 @@
-<html ng-app="stats.core">
+<html ng-app="stats.core" ng-strict-di>
 <head>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Stats</title>
+
     <style type="text/css">
         .wireframe {
             position: relative;
@@ -15,14 +19,6 @@
     </style>
 </head>
 <body>
-
-<p>
-    <a ui-sref="home">Home</a>
-</p>
-
-<p>
-    <a ui-sref="state2">State 2</a>
-</p>
 
 <div ui-view>
     <div class="wireframe">
