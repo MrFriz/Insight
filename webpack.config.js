@@ -11,7 +11,7 @@ module.exports = {
     {
       test: /\.(jsx?|es6)$/,
       exclude: /(node_modules|bower_components)/,
-      loader: 'babel!strict'
+      loader: 'ng-annotate!babel!strict'
     },
     {
       test: /\.css$/,

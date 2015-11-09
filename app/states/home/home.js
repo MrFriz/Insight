@@ -1,3 +1,6 @@
+require('./style.css');
+
+/*@ngInject*/
 function HomeCtrl($log) {
     $log.debug('HomeControlelr loaded !');
 }
@@ -9,5 +12,5 @@ exports.name = 'home';
 exports.config = {
     url: "/home",
     template: require('html!./home.html'),
-    controller: ['$log', HomeCtrl]
+    controller: HomeCtrl
 }
