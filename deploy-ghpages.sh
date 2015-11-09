@@ -1,7 +1,9 @@
 #!/bin/bash
 set -e # exit with nonzero exit code if anything fails
 
-[ $(/usr/local/bin/monit --version) == "5.5" ] || echo "not master"; exit 1;
+git rev-parse --abbrev-ref HEAD
+
+[ $(git rev-parse --abbrev-ref HEAD) == "master" ] || exit 1
 
 # clear and re-create the out directory
 rm -rf dist || exit 0;
