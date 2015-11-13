@@ -27,12 +27,10 @@
   "dependencies": {
     "angular": "^1.4.7",
     "angular-animate": "^1.4.7",
-    "angular-touch": "^1.4.7",
-    "angular-ui-router": "^0.2.15",
-    "jquery": "^2.1.4",
-    "moment": "^2.10.6",
-    "node-lumx": "^1.0.0",
-    "velocity-animate": "^1.2.3"
+    "angular-aria": "^1.4.7",
+    "angular-material": "^0.11.4",
+    "angular-new-router": "^0.5.3",
+    "angular-touch": "^1.4.7"
   },
   "repository": {
     "type": "git",
