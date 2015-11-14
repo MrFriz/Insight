@@ -14,6 +14,11 @@ module.exports = {
             {
                 test: /\.css$/,
                 loader: "style!css"
+            },
+            {
+                test: /\.html/,
+                exclude: /index\.html/,
+                loader: "html"
             }
         ]
     },
