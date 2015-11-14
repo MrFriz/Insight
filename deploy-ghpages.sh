@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e # exit with nonzero exit code if anything fails
 
+git rev-parse --abbrev-ref HEAD
+
 [ $(git rev-parse --abbrev-ref HEAD) == "master" ] || echo "not master, skip deploy"; exit 0
 
 # clear and re-create the out directory
