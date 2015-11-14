@@ -1,0 +1,11 @@
+#header > section {
+    padding: 2em;
+}
+
+#main-header {
+    text-align: right;
+}
+
+#sub-header {
+    color: #aeaeae;
+}
