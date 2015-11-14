@@ -11,3 +11,5 @@ angular
             }
         )
     });
+
+require('./home.css');

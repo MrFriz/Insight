@@ -9,3 +9,6 @@ require('./insight.module.config');
 require('components/home');
 
 
+// loading style
+require('angular-material/angular-material.css');
+require('style.css');
