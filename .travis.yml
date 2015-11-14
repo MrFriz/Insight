@@ -1,14 +1,7 @@
 language: node_js
 node_js:
   - '4.2'
-install:
- - npm install
 script:
- - npm run build
+ - npm run quietbuild
 after_success:
- - [ $(git rev-parse HEAD) == $(git rev-parse master) ] || echo "not master, skip deploy"; exit 0
  - bash deploy-ghpages.sh
-env:
-  global:
-    - GH_REF: github.com/genuinegreg/Stats
-    - secure: fT+MnzJRVuRUBwh6fruTxg8EhF7aNObQPva0X+A14tnxA4gUfBze/SxlneWY12L4pVd7eDITXs/3RMzPjEVjiUmz0ZgP7HOM4hPtAzWiCRwy/h7mDGsLYvFIBNN8n37CIyeCeXcOpVflmcbnvTD2sU4UhYyotiWeA2xVWBmkm3YydXfiOqd+Rj3jJa0u9jH3eLRLzUE69iWshZ0DKxhlYfMaQ5Ubg7l/8VD3OGanflgHZb3WeQvTDwck2eaxX4DrGhxd75VUV/2nAVIjeU7fL9JlmxdOzgL/8EE3XdASmJ4Up8tuVGD4JIhlM63p5VskdNf9x+U2Gi5LpvywhTlxAgEuvk3sz+2EgXjE59yOT3pDrNJ5p1vlhxjBKRRoTTgu+8ctmaXCx3mEoOwbiM8/XD6uV+Rg7kjKbxQJb1hN6PqJplXH4SzZLN9T8zfYA+kxliniV+e6Tsa4jCQXakr2YnjNpuXZdlIGT2jYT3slUkrUToPDVnLEUVUFpKImwOMIITfU51LjausFt9psg5PK/quiV41sTKpv8B/3cSQ1UG6X0dJ3jGBsSmCs3CK+SruqjbEuthDfW4zmYZxLWlYNtyEWE/rTLwe5HlE9Bkb6WA0fmsbn5N+ANqDTDpN/TeOXLv95i7QX3L/bWuumHqWD/5e5uJFzT67Xty5iuOKkdS4=
