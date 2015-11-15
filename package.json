@@ -6,7 +6,7 @@
     "scripts": {
         "start": "webpack-dev-server  -d --progress --colors",
         "build": "webpack --progress --colors --optimize-minimize",
-        "deploy": "./deploy-ghpages.sh"
+        "quietbuild": "webpack --optimize-minimize"
     },
     "author": "",
     "license": "ISC",
