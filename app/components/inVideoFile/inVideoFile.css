@@ -1,0 +1,16 @@
+.inVideoFile {
+    position: relative;
+    background-color: #9E9E9E;
+    border: 2px dashed black;
+    min-height: 180px;
+    min-width: 320px;
+}
+
+.inVideoFile.videoPlayer {
+    background-color: black;
+    border: none;
+}
+
+.inVideoFile > video {
+    width: 100%;
+}
