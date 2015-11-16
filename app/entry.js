@@ -7,6 +7,7 @@ require('./insight.module.config');
 
 // require routes components
 require('components/home');
+require('components/inVideoFile');
 
 
 // loading style

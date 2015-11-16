@@ -15,9 +15,26 @@
     </md-toolbar>
 </div>
 
-<md-input-container>
-    <label>Youtube url</label>
-    <input type="url" ng-model="ytUrl">
-</md-input-container>
+<div>
+    <h1>Youtube video</h1>
+    <md-input-container>
+        <label>Youtube url</label>
+        <input type="url" ng-model="videoUrl">
+    </md-input-container>
 
-<youtube-video video-url="ytUrl"></youtube-video>
+    <youtube-video video-url="videoUrl"></youtube-video>
+</div>
+
+
+<div>
+    <h1>Local video</h1>
+    <in-video-file></in-video-file>
+</div>
+
+
+<!--<h1>localUrl : {{file}}</h1>-->
+
+<!--<h1>videoUrl : {{videoUrl}}</h1>-->
+<!--&lt;!&ndash;<youtube-video video-url="videoUrl"></youtube-video>&ndash;&gt;-->
+
+<!--<in-video-html video-url="file.url"></in-video-html>-->
