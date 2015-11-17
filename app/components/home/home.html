@@ -8,33 +8,37 @@
             </span>
             <!-- fill up the space between left and right area -->
             <span flex></span>
-            <md-button>
-                Right Bar Button
+            <md-button ui-sref="home.process({videoType:'local'})">
+                Start with a local video
             </md-button>
         </div>
     </md-toolbar>
 </div>
 
-<div>
-    <h1>Youtube video</h1>
-    <md-input-container>
-        <label>Youtube url</label>
-        <input type="url" ng-model="videoUrl">
-    </md-input-container>
+<div ui-view>
 
-    <youtube-video video-url="videoUrl"></youtube-video>
+    <div>
+        <h1>Youtube video</h1>
+        <md-input-container>
+            <label>Youtube url</label>
+            <input type="url" ng-model="videoUrl">
+        </md-input-container>
+
+        <youtube-video video-url="videoUrl"></youtube-video>
+    </div>
+
+
+    <div>
+        <h1>Local video</h1>
+        <in-video-file></in-video-file>
+    </div>
+
+
+    <!--<h1>localUrl : {{file}}</h1>-->
+
+    <!--<h1>videoUrl : {{videoUrl}}</h1>-->
+    <!--&lt;!&ndash;<youtube-video video-url="videoUrl"></youtube-video>&ndash;&gt;-->
+
+    <!--<in-video-html video-url="file.url"></in-video-html>-->
+
 </div>
-
-
-<div>
-    <h1>Local video</h1>
-    <in-video-file></in-video-file>
-</div>
-
-
-<!--<h1>localUrl : {{file}}</h1>-->
-
-<!--<h1>videoUrl : {{videoUrl}}</h1>-->
-<!--&lt;!&ndash;<youtube-video video-url="videoUrl"></youtube-video>&ndash;&gt;-->
-
-<!--<in-video-html video-url="file.url"></in-video-html>-->
