@@ -1,0 +1,51 @@
+<section layout="row" layout-align="center">
+    <div flex>
+        <md-input-container>
+            <label>Team name</label>
+            <input ng-model="team1.name">
+        </md-input-container>
+        <md-list>
+            <md-subheader class="md-no-sticky">Players</md-subheader>
+            <md-list-item ng-repeat="player in team1.players">
+                <p> {{ player }} </p>
+            </md-list-item>
+            <md-divider></md-divider>
+        </md-list>
+    </div>
+    <in-video-file
+        ng-if="$stateParams.videoType == 'local'"
+        flex="75">
+    </in-video-file>
+    <div flex>
+        <md-input-container>
+            <label>Team name</label>
+            <input ng-model="team2.name">
+        </md-input-container>
+        <md-list>
+            <md-subheader class="md-no-sticky">Players</md-subheader>
+            <md-list-item ng-repeat="player in team2.players">
+                <p> {{ player }} </p>
+            </md-list-item>
+            <md-divider></md-divider>
+        </md-list>
+    </div>
+</section>
+<section layout="column" layout-align="center center">
+
+    <div layout="row">
+        <md-button class="md-fab"> p7</md-button>
+        <md-button class="md-fab"> Att</md-button>
+        <md-button class="md-fab"> Def</md-button>
+    </div>
+    <div layout="row">
+        <md-button class="md-fab"> p4</md-button>
+        <md-button class="md-fab"> p5</md-button>
+        <md-button class="md-fab"> p6</md-button>
+    </div>
+    <div layout="row">
+        <md-button class="md-fab"> p1</md-button>
+        <md-button class="md-fab"> p2</md-button>
+        <md-button class="md-fab"> p3</md-button>
+    </div>
+
+</section>
