@@ -5,7 +5,7 @@ angular
         $stateProvider.state(
             'home.process',
             {
-                url: '/insight/process/:videoType',
+                url: 'insight/process/:videoType',
                 template: require('./insight.process.html'),
                 controller: require('./insight.process.js')
             }
