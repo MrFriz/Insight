@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server  -d --progress --colors",
+    "start": "webpack-dev-server  -d --progress --colors --inline",
     "build": "webpack --progress --colors --optimize-minimize",
     "quietbuild": "webpack --optimize-minimize"
   },
