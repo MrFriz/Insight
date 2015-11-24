@@ -5,7 +5,7 @@ angular
         $stateProvider.state(
             'home',
             {
-                url: '/',
+                url: '/home',
                 template: require('./home.html'),
                 controller: require('./home')
             }
