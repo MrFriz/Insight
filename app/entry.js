@@ -6,8 +6,10 @@ require('insight.module');
 require('./insight.module.routes');
 
 // require routes components
+
 require('states');
 require('components/inVideoFile');
+require('components/GameLogs');
 
 
 // loading style

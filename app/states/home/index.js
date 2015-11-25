@@ -1,4 +1,11 @@
-function HomeController($state, $rootScope) {
+function HomeController($state, $rootScope, GameLogs) {
+
+    var db = GameLogs.get('maDb');
+
+    console.log(db);
+    db._db.info().then(function (info) {
+        console.log(info);
+    })
 
     // TODO: we need real ID here
     if (!$rootScope.currentID) {
