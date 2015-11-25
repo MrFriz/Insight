@@ -3,11 +3,11 @@ angular
     .config(function ($stateProvider) {
 
         $stateProvider.state(
-            'insight',
+            'record',
             {
-                abstract: true,
-                url: '/insight',
-                template: '<ui-view />'
+                url: '/record/:id',
+                template: require('./record.html'),
+                controller: require('./record.js')
             }
         )
     });

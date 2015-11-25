@@ -6,9 +6,7 @@ require('insight.module');
 require('./insight.module.routes');
 
 // require routes components
-require('components/home');
-require('components/insight');
-require('components/insight.process');
+require('states');
 require('components/inVideoFile');
 
 
