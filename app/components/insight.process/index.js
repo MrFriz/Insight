@@ -3,9 +3,9 @@ angular
     .config(function ($stateProvider) {
 
         $stateProvider.state(
-            'home.process',
+            'insight.process',
             {
-                url: '/insight/process/:videoType',
+                url: '/process/:videoType',
                 template: require('./insight.process.html'),
                 controller: require('./insight.process.js')
             }

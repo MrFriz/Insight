@@ -2,13 +2,13 @@
 
     <md-toolbar>
         <div class="md-toolbar-tools">
-            <span>
+            <a ui-sref="home">
                 <i class="material-icons">face</i>
                 Ulti Insight
-            </span>
+            </a>
             <!-- fill up the space between left and right area -->
             <span flex></span>
-            <md-button ui-sref="home.process({videoType:'local'})">
+            <md-button ui-sref="insight.process({videoType:'local'})">
                 Start with a local video
             </md-button>
         </div>
@@ -17,21 +17,24 @@
 
 <div ui-view>
 
-    <div>
-        <h1>Youtube video</h1>
-        <md-input-container>
-            <label>Youtube url</label>
-            <input type="url" ng-model="videoUrl">
-        </md-input-container>
+    <!--<div>-->
+        <!--<h1>Youtube video</h1>-->
+        <!--<md-input-container>-->
+            <!--<label>Youtube url</label>-->
+            <!--<input type="url" ng-model="videoUrl">-->
+        <!--</md-input-container>-->
 
-        <youtube-video video-url="videoUrl"></youtube-video>
-    </div>
+        <!--<youtube-video video-url="videoUrl"></youtube-video>-->
+    <!--</div>-->
 
 
     <div>
         <h1>Local video</h1>
         <in-video-file></in-video-file>
     </div>
+
+    <md-button ng-click="inVideoController.play()">Play</md-button>
+    <md-button ng-click="inVideoController.pause()">Pause</md-button>
 
 
     <!--<h1>localUrl : {{file}}</h1>-->
