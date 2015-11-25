@@ -6,7 +6,7 @@ echo $TRAVIS_BRANCH
 
 
 
-[ $TRAVIS_BRANCH == "master" ] || exit 0
+[ $TRAVIS_BRANCH == "develop" ] || exit 0
 
 # clear and re-create the out directory
 
