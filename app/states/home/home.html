@@ -21,11 +21,17 @@
 
 <div layout="column" layout-align="center center">
     <md-button class="md-raised"
-               ng-click="ctrl.startRecord()">
+               ng-click="ctrl.createGame()">
         Record a new game
     </md-button>
-    <md-button class="md-raised"
-               ng-disabled="true">
-        List existing game
-    </md-button>
+</div>
+
+<div ng-if="!games">No games</div>
+
+<div ng-repeat="game in games">
+    <a ui-sref="record({id: game._id})">
+        {{game._id}}
+        {{game.name || 'no title[' + game._id + ']' }}
+
+    </a>
 </div>
