@@ -3,9 +3,9 @@ var db = new PouchDB('insight');
 
 db.createIndex({
     index: {
-        fields: ['type']
+        fields: ['type', 'game', 'team', 'player']
     }
-})
+});
 
 angular.module(require('insight.module')).
 service(
@@ -16,8 +16,54 @@ service(
         class GameLogs {
             constructor(game) {
                 console.log('create GameLogs', game)
-                this._db = new new PouchDB(game);
+                this._game = game;
+
             }
+
+            _getset(property, value) {
+                if (value === undefined) {
+                    return this._game[property];
+                }
+
+                $log.info('update game property ', property, name);
+                this._game[property] = value;
+
+                return $q.when(db.put(this._game).then(() => {
+                    db.get(this._game._id).then((gameDoc) => {
+                        this._game = gameDoc
+                    })
+                }));
+            }
+
+            team1(name) {
+                return this._getset('team1', name);
+            }
+
+            team2(name) {
+                return this._getset('team2', name);
+            }
+
+            name(name) {
+
+                if (name === undefined) {
+                    return this._game.name;
+                }
+
+                $log.info('update game name', name);
+                this._game.name = name;
+
+                return $q.when(db.put(this._game).then(() => {
+                    db.get(this._game._id).then((gameDoc) => {
+                        this._game = gameDoc
+                    })
+                }));
+            }
+
+            team(id) {
+
+            }
+
+
         }
 
 
@@ -41,24 +87,21 @@ service(
         this.delete = function (id) {
             return $q.when(
                 db.get(id).then((doc) => {
+                    $log.warn('deleting game [', id, ']');
                     return db.remove(doc);
                 }))
         };
 
         this.get = function (id) {
-
+            $log.info('get() game id [', id, ']');
             return $q.when(
-                db.get(id).when(
-                    (doc) => {
-                        return new GameLogs(doc);
-                    }
-                )
+                db.get(id).then(function (gameDoc) {
+                    return new GameLogs(gameDoc);
+                })
             );
-
-            var game = new GameLogs();
-            return game;
         }
     }
-);
+)
+;
 
 module.exports = 'GameLogs';
