@@ -1,32 +1,42 @@
-function HomeController($state, $rootScope, GameLogs) {
+function HomeController($state, $rootScope, $scope, GameLogs) {
 
-    var db = GameLogs.get('maDb');
+    GameLogs.listGames().then(function (games) {
+        $scope.games = games.docs;
+    });
 
-    console.log(db);
-    db._db.info().then(function (info) {
-        console.log(info);
-    })
 
     // TODO: we need real ID here
     if (!$rootScope.currentID) {
         $rootScope.currentID = 1;
     }
 
+
+    $scope.$state = $state;
     this.i = {
         $state,
-        $rootScope
+        GameLogs
     };
 }
 
-HomeController.prototype.startRecord = function () {
-
-    var id = this.i.$rootScope.currentID++;
-
-    console.log(id);
-
-
+HomeController.prototype.openGame = function (id) {
     this.i.$state.go('record', {id: id});
+}
+
+HomeController.prototype.createGame = function () {
+    this.i.GameLogs.create()
+        .then((gameDoc) => {
+            this.openGame(gameDoc.id);
+        });
 };
+
+HomeController.prototype.deleteGame = function (id) {
+    this.i.GameLogs.delete(id).finally(()=> {
+        GameLogs.listGames().then(function (games) {
+            $scope.games = games.docs;
+        })
+    })
+};
+
 
 angular.module(require('insight.module')).
 config(function ($stateProvider) {

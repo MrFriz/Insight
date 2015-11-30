@@ -6,8 +6,8 @@
         </a>
         <!-- fill up the space between left and right area -->
         <span flex></span>
-        <md-button ui-sref="record({id:'local'})">
-            Start with a local video
+        <md-button ng-click="ctrl.createGame()">
+            Record a new game
         </md-button>
     </div>
 </md-toolbar>
@@ -21,11 +21,20 @@
 
 <div layout="column" layout-align="center center">
     <md-button class="md-raised"
-               ng-click="ctrl.startRecord()">
+               ng-click="ctrl.createGame()">
         Record a new game
     </md-button>
-    <md-button class="md-raised"
-               ng-disabled="true">
-        List existing game
-    </md-button>
 </div>
+
+<md-divider style="margin:15px;"></md-divider>
+
+<div ng-if="!games || games.length < 1">No games</div>
+
+<md-list ng-if="games && games.length > 0">
+    <md-subheader class="md-no-sticky">Previous games</md-subheader>
+    <md-list-item ng-repeat="game in games" ng-click="ctrl.openGame(game._id)">
+        <md-icon>face</md-icon>
+        <p>{{ game.name || 'untitled game' }} <small style="color:#999">{{ game._id }}</small></p>
+        <md-icon ng-click="ctrl.deleteGame(game._id)">delete</md-icon>
+    </md-list-item>
+</md-list>

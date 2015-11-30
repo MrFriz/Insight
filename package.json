@@ -33,7 +33,8 @@
     "angular-touch": "^1.4.7",
     "angular-ui-router": "^0.2.15",
     "angular-youtube-embed": "^1.1.1",
-    "pouchdb": "^5.1.0"
+    "pouchdb": "^5.1.0",
+    "pouchdb-find": "^0.7.0"
   },
   "repository": {
     "type": "git",

@@ -1,26 +1,62 @@
+var PouchDB = require('pouchdb');
+var db = new PouchDB('insight');
 
-var PouchDD = require('pouchdb');
-
-class GameLogs {
-    constructor(id) {
-        this._db = new PouchDD(id);
+db.createIndex({
+    index: {
+        fields: ['type']
     }
-
-    name(name) {
-        if (!name) {
-            return 'yo les mais';
-        }
-
-        return 'pasyo les amis';
-    }
-}
+})
 
 angular.module(require('insight.module')).
 service(
     'GameLogs',
-    function ($log) {
+    function ($q, $log) {
+
+
+        class GameLogs {
+            constructor(game) {
+                console.log('create GameLogs', game)
+                this._db = new new PouchDB(game);
+            }
+        }
+
+
+        this.listGames = function () {
+            return $q.when(
+                db.find({
+                    selector: {type: 'game'}
+                })
+            );
+        };
+
+        this.create = function () {
+            return $q.when(
+                db.post({
+                    type: 'game',
+                    create: new Date()
+                })
+            );
+        };
+
+        this.delete = function (id) {
+            return $q.when(
+                db.get(id).then((doc) => {
+                    return db.remove(doc);
+                }))
+        };
+
         this.get = function (id) {
-            return new GameLogs(id);
+
+            return $q.when(
+                db.get(id).when(
+                    (doc) => {
+                        return new GameLogs(doc);
+                    }
+                )
+            );
+
+            var game = new GameLogs();
+            return game;
         }
     }
 );

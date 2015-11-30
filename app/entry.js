@@ -1,3 +1,8 @@
+
+//require external lib
+var PouchDB = require('pouchdb');
+PouchDB.plugin(require('pouchdb-find'));
+
 // require assets
 require('file?name=index.html!index.html');
 
@@ -7,9 +12,9 @@ require('./insight.module.routes');
 
 // require routes components
 
+require('components/GameLogs');
 require('states');
 require('components/inVideoFile');
-require('components/GameLogs');
 
 
 // loading style
