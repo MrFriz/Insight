@@ -10,6 +10,7 @@ require('components/home');
 require('components/insight');
 require('components/insight.process');
 require('components/inVideoFile');
+require('components/inPlayer');
 
 
 // loading style
