@@ -1,14 +1,10 @@
 
-//require external lib
-var PouchDB = require('pouchdb');
-PouchDB.plugin(require('pouchdb-find'));
-
 // require assets
 require('file?name=index.html!index.html');
 
 // require core module and it's config
 require('insight.module');
-require('./insight.module.routes');
+require('insight.module.routes');
 
 // require routes components
 
