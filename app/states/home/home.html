@@ -26,12 +26,15 @@
     </md-button>
 </div>
 
-<div ng-if="!games">No games</div>
+<md-divider style="margin:15px;"></md-divider>
 
-<div ng-repeat="game in games">
-    <a ui-sref="record({id: game._id})">
-        {{game._id}}
-        {{game.name || 'no title[' + game._id + ']' }}
+<div ng-if="!games || games.length < 1">No games</div>
 
-    </a>
-</div>
+<md-list ng-if="games && games.length > 0">
+    <md-subheader class="md-no-sticky">Previous games</md-subheader>
+    <md-list-item ng-repeat="game in games" ng-click="ctrl.openGame(game._id)">
+        <md-icon>face</md-icon>
+        <p>{{ game.name || 'untitled game' }} <small style="color:#999">{{ game._id }}</small></p>
+        <md-icon ng-click="ctrl.deleteGame(game._id)">delete</md-icon>
+    </md-list-item>
+</md-list>

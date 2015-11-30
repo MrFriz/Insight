@@ -38,6 +38,13 @@ service(
             );
         };
 
+        this.delete = function (id) {
+            return $q.when(
+                db.get(id).then((doc) => {
+                    return db.remove(doc);
+                }))
+        };
+
         this.get = function (id) {
 
             return $q.when(
