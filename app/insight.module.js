@@ -4,8 +4,7 @@ require('angular').module(
         require('angular-animate'),
         require('angular-touch'),
         require('angular-ui-router'),
-        require('angular-material'),
-        require('angular-youtube-embed')
+        require('angular-material')
     ]
 );
 module.exports = 'insight';
