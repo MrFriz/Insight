@@ -1,6 +1,8 @@
-function HomeProcessController($scope, $stateParams) {
+function HomeProcessController($scope, $stateParams, game) {
     "ngInject"
     $scope.$stateParams = $stateParams;
+
+    $scope.game = game;
 
     $scope.team1 = {
         name: 'Orange',
