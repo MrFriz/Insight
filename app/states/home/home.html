@@ -1,0 +1,31 @@
+<md-toolbar>
+    <div class="md-toolbar-tools">
+        <a ui-sref="home">
+            <i class="material-icons">assessment</i>
+            Ulti Insight
+        </a>
+        <!-- fill up the space between left and right area -->
+        <span flex></span>
+        <md-button ui-sref="record({id:'local'})">
+            Start with a local video
+        </md-button>
+    </div>
+</md-toolbar>
+
+<h1 flex class="md-display-4 center">
+    Ulti
+    <md-icon style="font-size:48px">assessment</md-icon>
+    Insight
+</h1>
+
+
+<div layout="column" layout-align="center center">
+    <md-button class="md-raised"
+               ng-click="ctrl.startRecord()">
+        Record a new game
+    </md-button>
+    <md-button class="md-raised"
+               ng-disabled="true">
+        List existing game
+    </md-button>
+</div>

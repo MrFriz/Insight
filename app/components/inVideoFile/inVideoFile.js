@@ -49,9 +49,9 @@ directive(
         return {
             scope: {},
             template: require('./inVideoFile.html'),
-            replace: true,
+            replace: false,
             controller: InVideoController,
-            controllerAs: 'inVideoController'
+            controllerAs: 'ctrl'
         }
     }
 );
