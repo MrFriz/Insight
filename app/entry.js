@@ -11,6 +11,8 @@ require('insight.module.routes');
 require('components/GameLogs');
 require('states');
 require('components/inVideoFile');
+require('components/inPlayer');
+require('components/GameLogs');
 
 
 // loading style
