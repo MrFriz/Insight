@@ -15,7 +15,7 @@ service(
 
         class GameLogs {
             constructor(game) {
-                console.log('create GameLogs', game)
+                $log.debug('Create GameLogs', game)
                 this._game = game;
 
             }
