@@ -1,42 +1,38 @@
 angular.module(require('insight.module')).
 config(function ($stateProvider) {
 
-    function HomeController($state, $rootScope, $scope, GameLogs, $mdDialog, $log) {
+    function HomeController($state, $rootScope, $scope, $mdDialog, games, DataStore) {
 
-        this._log = $log;
+        this.DataStore = DataStore;
+
+        $scope.games = games || [];
+
         this._mdDialog = $mdDialog;
         this._scope = $scope;
+        this._state = $state;
 
-        GameLogs.listGames().then(function (games) {
-            $scope.games = games.docs;
+
+    }
+
+    HomeController.prototype.listGames = function () {
+        return this.DataStore.games().then((res) => {
+            this._scope.games = res.docs || [];
         });
-
-
-        // TODO: we need real ID here
-        if (!$rootScope.currentID) {
-            $rootScope.currentID = 1;
-        }
-
-
-        $scope.$state = $state;
-        this.i = {
-            $state,
-            GameLogs
-        };
     }
 
     HomeController.prototype.openGame = function (id) {
-        this.i.$state.go('record', {id: id});
+        this._state.go('record', {id: id});
     };
 
     HomeController.prototype.createGame = function () {
-        this.i.GameLogs.create()
-            .then((gameDoc) => {
-                this.openGame(gameDoc.id);
-            });
+
+        return this.DataStore.createGame({test: 'test'}).then((game) => {
+            this._scope.games.push(game);
+        });
+
     };
 
-    HomeController.prototype.deleteGame = function ($event, id) {
+    HomeController.prototype.deleteGame = function ($event, id, DataStore) {
 
 
         var confirm = this._mdDialog.confirm()
@@ -49,13 +45,13 @@ config(function ($stateProvider) {
 
         this._mdDialog.show(confirm)
             .then(() => {
-                return this.i.GameLogs.delete(id)
+                return this.DataStore.games(id);
+            })
+            .then((gameDoc) => {
+                return this.DataStore.remove(gameDoc);
             })
             .then(()=> {
-                return this.i.GameLogs.listGames()
-            })
-            .then((games) => {
-                this._scope.games = games.docs;
+                return this.listGames();
             });
 
 
@@ -67,7 +63,14 @@ config(function ($stateProvider) {
             url: '/home',
             template: require('./home.html'),
             controller: HomeController,
-            controllerAs: 'ctrl'
+            controllerAs: 'ctrl',
+            resolve: {
+                games: function (DataStore) {
+                    return DataStore.games().then((res) => {
+                        return res.docs
+                    });
+                }
+            }
         }
     )
 });

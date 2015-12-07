@@ -8,7 +8,7 @@ require('insight.module.routes');
 
 // require routes components
 
-require('components/GameLogs');
+require('components/DataStore');
 require('states');
 require('components/inVideoFile');
 require('components/inPlayer');

@@ -9,9 +9,8 @@ angular
                 template: require('./record.html'),
                 controller: require('./record.js'),
                 resolve: {
-                    game: function ($stateParams, GameLogs) {
-                        var game = GameLogs.get($stateParams.id);
-                        return game;
+                    game: function ($stateParams, DataStore) {
+                        return DataStore.games($stateParams.id);
                     }
                 }
             }

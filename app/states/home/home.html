@@ -32,9 +32,9 @@
 
 <md-list ng-if="games && games.length > 0">
     <md-subheader class="md-no-sticky">Previous games</md-subheader>
-    <md-list-item ng-repeat="game in games | orderBy:'create'" ng-click="ctrl.openGame(game._id)">
+    <md-list-item ng-repeat="game in games | orderBy:'-create'" ng-click="ctrl.openGame(game._id)">
         <md-icon>face</md-icon>
-        <p>{{ game.name || 'untitled game' }} <small style="color:#999">{{ game._id }} / {{ game.create | date:'medium'}}</small></p>
+        <p><strong>{{ game.create | date:'short'}}</strong> {{ game.team1 || 'Unnamed Team' }} vs {{ game.team2 || 'Unnamed Team' }} <small style="color:#999">{{ game._id }}</small></p>
         <md-button aria-label="delete" class="md-secondary md-warn md-raised" ng-click="ctrl.deleteGame($event, game._id)"><md-icon>delete</md-icon></md-button>
     </md-list-item>
 </md-list>
