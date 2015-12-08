@@ -1,11 +1,12 @@
 angular.module(require('insight.module')).
 config(function ($stateProvider) {
 
-    function HomeController($state, $rootScope, $scope, $mdDialog, games, DataStore) {
+    function HomeController($state, $rootScope, $scope, $mdDialog, games, teams, DataStore) {
 
         this.DataStore = DataStore;
 
         $scope.games = games || [];
+        $scope.teams = teams || [];
 
         this._mdDialog = $mdDialog;
         this._scope = $scope;
@@ -14,25 +15,41 @@ config(function ($stateProvider) {
 
     }
 
+    HomeController.prototype.listTeams = function () {
+        return this.DataStore.teams().then((res) => {
+
+            console.log('listTeam.then', res);
+
+            this._scope.teams = res || [];
+        });
+    };
+
     HomeController.prototype.listGames = function () {
         return this.DataStore.games().then((res) => {
-            this._scope.games = res.docs || [];
+            this._scope.games = res || [];
         });
-    }
+    };
 
     HomeController.prototype.openGame = function (id) {
         this._state.go('record', {id: id});
     };
 
     HomeController.prototype.createGame = function () {
-
-        return this.DataStore.createGame({test: 'test'}).then((game) => {
+        return this.DataStore.createGame().then((game) => {
             this._scope.games.push(game);
         });
-
     };
 
-    HomeController.prototype.deleteGame = function ($event, id, DataStore) {
+    HomeController.prototype.createTeam = function (name) {
+
+        console.log('createTeam(', name, ')');
+
+        return this.DataStore.createTeam(name).then((team) => {
+            this._scope.teams.push(team);
+        });
+    };
+
+    HomeController.prototype.deleteGame = function ($event, id) {
 
 
         var confirm = this._mdDialog.confirm()
@@ -57,6 +74,31 @@ config(function ($stateProvider) {
 
     };
 
+    HomeController.prototype.deleteTeam = function ($event, id) {
+
+
+        var confirm = this._mdDialog.confirm()
+            .clickOutsideToClose(true)
+            .title('Suppression')
+            .textContent('Êtes-vous sûr de vouloir supprimer cette équipe ?')
+            .targetEvent($event)
+            .ok('Oui')
+            .cancel('Non');
+
+        this._mdDialog.show(confirm)
+            .then(() => {
+                return this.DataStore.teams(id);
+            })
+            .then((teamDoc) => {
+                return this.DataStore.remove(teamDoc);
+            })
+            .then(()=> {
+                return this.listTeams();
+            });
+
+
+    };
+
 
     $stateProvider.state(
         'home', {
@@ -67,6 +109,9 @@ config(function ($stateProvider) {
             resolve: {
                 games: function (DataStore) {
                     return DataStore.games();
+                },
+                teams: function (DataStore) {
+                    return DataStore.teams();
                 }
             }
         }

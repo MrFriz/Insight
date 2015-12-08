@@ -115,6 +115,17 @@ function dataStoreFactory($q, $log) {
                 })
         }
 
+        createTeam(name) {
+            return this._put({
+                    _id: name,
+                    type: 'team',
+                    create: new Date()
+                })
+                .then((res) => {
+                    return this.teams(res.id);
+                })
+        }
+
         remove(doc) {
             $log.debug('remove', doc);
             return $q.when(this._db.remove(doc));
