@@ -1,39 +1,52 @@
 angular.module(require('insight.module')).
 config(function ($stateProvider) {
 
-    function HomeController($state, $rootScope, $scope, GameLogs, $mdDialog, $log) {
+    function HomeController($state, $rootScope, $scope, $mdDialog, games, teams, DataStore) {
 
-        this._log = $log;
+        this.DataStore = DataStore;
+
+        $scope.games = games || [];
+        $scope.teams = teams || [];
+
         this._mdDialog = $mdDialog;
         this._scope = $scope;
-
-        GameLogs.listGames().then(function (games) {
-            $scope.games = games.docs;
-        });
+        this._state = $state;
 
 
-        // TODO: we need real ID here
-        if (!$rootScope.currentID) {
-            $rootScope.currentID = 1;
-        }
-
-
-        $scope.$state = $state;
-        this.i = {
-            $state,
-            GameLogs
-        };
     }
 
+    HomeController.prototype.listTeams = function () {
+        return this.DataStore.teams().then((res) => {
+
+            console.log('listTeam.then', res);
+
+            this._scope.teams = res || [];
+        });
+    };
+
+    HomeController.prototype.listGames = function () {
+        return this.DataStore.games().then((res) => {
+            this._scope.games = res || [];
+        });
+    };
+
     HomeController.prototype.openGame = function (id) {
-        this.i.$state.go('record', {id: id});
+        this._state.go('record', {id: id});
     };
 
     HomeController.prototype.createGame = function () {
-        this.i.GameLogs.create()
-            .then((gameDoc) => {
-                this.openGame(gameDoc.id);
-            });
+        return this.DataStore.createGame().then((game) => {
+            this._scope.games.push(game);
+        });
+    };
+
+    HomeController.prototype.createTeam = function (name) {
+
+        console.log('createTeam(', name, ')');
+
+        return this.DataStore.createTeam(name).then((team) => {
+            this._scope.teams.push(team);
+        });
     };
 
     HomeController.prototype.deleteGame = function ($event, id) {
@@ -49,13 +62,38 @@ config(function ($stateProvider) {
 
         this._mdDialog.show(confirm)
             .then(() => {
-                return this.i.GameLogs.delete(id)
+                return this.DataStore.games(id);
+            })
+            .then((gameDoc) => {
+                return this.DataStore.remove(gameDoc);
             })
             .then(()=> {
-                return this.i.GameLogs.listGames()
+                return this.listGames();
+            });
+
+
+    };
+
+    HomeController.prototype.deleteTeam = function ($event, id) {
+
+
+        var confirm = this._mdDialog.confirm()
+            .clickOutsideToClose(true)
+            .title('Suppression')
+            .textContent('Êtes-vous sûr de vouloir supprimer cette équipe ?')
+            .targetEvent($event)
+            .ok('Oui')
+            .cancel('Non');
+
+        this._mdDialog.show(confirm)
+            .then(() => {
+                return this.DataStore.teams(id);
             })
-            .then((games) => {
-                this._scope.games = games.docs;
+            .then((teamDoc) => {
+                return this.DataStore.remove(teamDoc);
+            })
+            .then(()=> {
+                return this.listTeams();
             });
 
 
@@ -67,7 +105,15 @@ config(function ($stateProvider) {
             url: '/home',
             template: require('./home.html'),
             controller: HomeController,
-            controllerAs: 'ctrl'
+            controllerAs: 'ctrl',
+            resolve: {
+                games: function (DataStore) {
+                    return DataStore.games();
+                },
+                teams: function (DataStore) {
+                    return DataStore.teams();
+                }
+            }
         }
     )
 });

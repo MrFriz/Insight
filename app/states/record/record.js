@@ -1,26 +1,15 @@
-function HomeProcessController($scope, $stateParams, game) {
+function HomeProcessController($scope, game, teams) {
     "ngInject"
-    $scope.$stateParams = $stateParams;
 
     $scope.game = game;
 
-    $scope.team1 = {
-        name: 'Orange',
-        players : [
-            'Greg',
-            'Gildas',
-            'Mitch',
-            'Damien'
-        ]
-    };
+    $scope.teams = teams;
 
-    $scope.team2 = {
-        name: 'Blue',
-        players : [
-            'Jerem ',
-            'Fab'
-        ]
-    };
+    console.log('teams', teams);
+
+    $scope.createNewTeam = (name) => {
+        console.log('createNewTeam()', name);
+    }
 }
 
 

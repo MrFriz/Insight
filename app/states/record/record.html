@@ -1,44 +1,62 @@
-<div layout="row">
+<md-toolbar>
+    <div class="md-toolbar-tools">
+        <a ui-sref="home">
+            Ulti <i class="material-icons">assessment</i> Insight
+        </a>
+        <!-- fill up the space between left and right area -->
+        <span flex></span>
+        <md-button ng-disabled="true">
+            Do stuff
+        </md-button>
+    </div>
+</md-toolbar>
 
-    <div flex="5"></div>
+<div layout="row" layout-padding>
 
-    <section flex="60">
-        <md-input-container flex>
-            <label>Game name</label>
-            <input ng-model="game.name" ng-model-options="{getterSetter: true, debounce: 500}">
-        </md-input-container>
-        <md-input-container flex>
-            <label>Team 1 name</label>
-            <input ng-model="game.team1" ng-model-options="{getterSetter: true, debounce: 500}">
-        </md-input-container>
-        <md-input-container flex>
-            <label>Team 2 name</label>
-            <input ng-model="game.team2" ng-model-options="{getterSetter: true, debounce: 500}">
-        </md-input-container>
+    <section flex="60" layout-align="center center">
         <in-video-file
             flex="75">
         </in-video-file>
     </section>
 
-    <section flex="30">
+    <section flex>
+        <div layout="column" layout-padding>
+
+            <in-select
+                placeholder="Team 1"
+                createNew="createNewTeam"
+                dataset="teams">
+            </in-select>
+
+
+            <md-input-container flex>
+                <label>Team 1 name</label>
+                <input ng-model="game.team1" ng-model-options="{getterSetter: true, debounce: 500}">
+            </md-input-container>
+            <md-input-container flex>
+                <label>Team 2 name</label>
+                <input ng-model="game.team2" ng-model-options="{getterSetter: true, debounce: 500}">
+            </md-input-container>
+            <md-button flex class="md-raised md-primary">Start</md-button>
+        </div>
+
+
         <div ng-cloak>
-          <md-content>
-            <md-tabs md-dynamic-height md-border-bottom class="md-accent">
-              <md-tab label="Offense">
-                <md-content class="md-padding">
-                    <in-team></in-team>
-                </md-content>
-              </md-tab>
-              <md-tab label="Defense">
-                <md-content class="md-padding">
-                    <in-team></in-team>
-                </md-content>
-              </md-tab>
-            </md-tabs>
-          </md-content>
+            <md-content>
+                <md-tabs md-dynamic-height md-border-bottom class="md-accent">
+                    <md-tab label="Offense">
+                        <md-content class="md-padding">
+                            <in-team></in-team>
+                        </md-content>
+                    </md-tab>
+                    <md-tab label="Defense">
+                        <md-content class="md-padding">
+                            <in-team></in-team>
+                        </md-content>
+                    </md-tab>
+                </md-tabs>
+            </md-content>
         </div>
     </section>
-
-    <div flex="5"></div>
 
 </div>

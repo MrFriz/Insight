@@ -1,14 +1,14 @@
-function InTeamController($scope, $element, GameLogs) {
+function InTeamController($scope, $element) {
     'ngInject';
 
     var self = this;
     self.simulateQuery = false;
-    self.isDisabled    = false;
+    self.isDisabled = false;
     // list of `state` value/display objects
-    self.states        = loadAll();
-    self.querySearch   = querySearch;
+    self.states = loadAll();
+    self.querySearch = querySearch;
     self.selectedItemChange = selectedItemChange;
-    self.searchTextChange   = searchTextChange;
+    self.searchTextChange = searchTextChange;
     self.newTeam = newTeam;
 
     $scope.ctrl = self;
@@ -18,9 +18,9 @@ function InTeamController($scope, $element, GameLogs) {
     	
     });
 
-    function querySearch (query) {
-        var results = query ? self.states.filter( createFilterFor(query) ) : self.states,
-        deferred;
+    function querySearch(query) {
+        var results = query ? self.states.filter(createFilterFor(query)) : self.states,
+            deferred;
         if (self.simulateQuery) {
             deferred = $q.defer();
             $timeout(function () { deferred.resolve( results ); }, Math.random() * 1000, false);
@@ -41,7 +41,7 @@ function InTeamController($scope, $element, GameLogs) {
 
         var allStates = 'Mr Friz 1, Mr Friz 2, Fresh Fever, Frisbeurs';
 
-        return allStates.split(/, +/g).map( function (state) {
+        return allStates.split(/, +/g).map(function (state) {
             return {
                 value: state.toLowerCase(),
                 display: state
