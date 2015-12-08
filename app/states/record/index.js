@@ -8,6 +8,7 @@ angular
                 url: '/record/:id',
                 template: require('./record.html'),
                 controller: require('./record.js'),
+                controllerAs: 'ctrl',
                 resolve: {
                     game: function ($stateParams, DataStore) {
                         return DataStore.games($stateParams.id);

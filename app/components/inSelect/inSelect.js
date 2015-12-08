@@ -7,38 +7,23 @@ directive(
             constructor($scope) {
                 this._scope = $scope;
                 $scope.dataset = $scope.dataset || [];
-
-
             }
 
             searchTextChange(text) {
                 $log.info('Text changed to ' + text);
             }
 
-            selectedItemChange(item) {
-
-                this._scope.item = item;
-                $log.info('Item changed to ' + JSON.stringify(item));
-            }
-
             createFilterFor(query) {
-                var lowercaseQuery = angular.lowercase(query);
                 return function filterFn(state) {
-                    console.log('state', state)
-                    return (state._id.indexOf(lowercaseQuery) === 0);
+                    return (state._id.indexOf(query) === 0);
                 };
             }
 
             querySearch(query) {
-
-                console.log('querySearch', query);
-
-
-                var results = query ? this._scope.dataset.filter(this.createFilterFor(query)) : this._scope.dataset;
-
-                return results;
+                return query ? this._scope.dataset.filter(this.createFilterFor(query)) : this._scope.dataset;
 
             }
+
         }
 
 
@@ -47,7 +32,8 @@ directive(
                 placeholder: '@',
                 dataset: '=',
                 item: '=',
-                createNew: '&'
+                createNew: '&',
+                itemChanged: '&'
             },
             template: require('./inSelect.html'),
             controller: InSelectController,

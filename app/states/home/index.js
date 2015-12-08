@@ -44,9 +44,13 @@ config(function ($stateProvider) {
 
         console.log('createTeam(', name, ')');
 
-        return this.DataStore.createTeam(name).then((team) => {
-            this._scope.teams.push(team);
-        });
+        return this.DataStore.createTeam(name)
+            .then((team) => {
+                this._scope.teams.push(team);
+            })
+            .then(() => {
+                this._scope.newTeamName = undefined;
+            });
     };
 
     HomeController.prototype.deleteGame = function ($event, id) {
