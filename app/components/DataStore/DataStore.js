@@ -42,8 +42,9 @@ function dataStoreFactory($q, $log) {
         _getByType(id, type) {
 
             if (!id) {
-                return this._find({type: type}
-                );
+                return this._find({type: type}).then((res) => {
+                    return res.docs;
+                });
             }
 
             return this._get(id).then(
@@ -66,7 +67,7 @@ function dataStoreFactory($q, $log) {
             return this._find(query);
         }
 
-        _getStuf(type, id, childType) {
+        _getStuff(type, id, childType) {
 
             if (!childType) {
                 return this._getByType(id, type);
@@ -76,19 +77,19 @@ function dataStoreFactory($q, $log) {
         }
 
         teams(id, childType) {
-            return this._getStuf('team', id, childType);
+            return this._getStuff('team', id, childType);
         }
 
         games(id, childType) {
-            return this._getStuf('game', id, childType);
+            return this._getStuff('game', id, childType);
         }
 
         events(id, childType) {
-            return this._getStuf('event', id, childType);
+            return this._getStuff('event', id, childType);
         }
 
         players(id, childType) {
-            return this._getStuf('player', id, childType);
+            return this._getStuff('player', id, childType);
         }
 
         _put(doc) {

@@ -11,6 +11,9 @@ angular
                 resolve: {
                     game: function ($stateParams, DataStore) {
                         return DataStore.games($stateParams.id);
+                    },
+                    teams: function (DataStore) {
+                        return DataStore.teams();
                     }
                 }
             }

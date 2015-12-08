@@ -66,9 +66,7 @@ config(function ($stateProvider) {
             controllerAs: 'ctrl',
             resolve: {
                 games: function (DataStore) {
-                    return DataStore.games().then((res) => {
-                        return res.docs
-                    });
+                    return DataStore.games();
                 }
             }
         }
