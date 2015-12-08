@@ -4,10 +4,10 @@
     md-search-text="ctrl.searchText"
     md-selected-item-change="ctrl.selectedItemChange(item)"
     md-items="item in ctrl.querySearch(ctrl.searchText)"
-    md-item-text="item"
+    md-item-text="item._id"
     placeholder="{{placeholder}}">
     <md-item-template>
-        <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item}}</span>
+        <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item._id}}</span>
     </md-item-template>
     <md-not-found>
         No team "{{ctrl.searchText}}" found.

@@ -3,7 +3,7 @@ function HomeProcessController($scope, game, teams) {
 
     $scope.game = game;
 
-    $scope.teams = ['blue', 'red', 'bluish'];
+    $scope.teams = teams;
 
     console.log('teams', teams);
 

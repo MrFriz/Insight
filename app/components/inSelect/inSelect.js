@@ -25,7 +25,7 @@ directive(
                 var lowercaseQuery = angular.lowercase(query);
                 return function filterFn(state) {
                     console.log('state', state)
-                    return (state.indexOf(lowercaseQuery) === 0);
+                    return (state._id.indexOf(lowercaseQuery) === 0);
                 };
             }
 
