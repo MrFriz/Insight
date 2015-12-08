@@ -13,7 +13,7 @@ require('states');
 require('components/inVideoFile');
 require('components/inPlayer');
 require('components/inTeam');
-require('components/GameLogs');
+require('components/inSelect');
 
 
 // loading style
