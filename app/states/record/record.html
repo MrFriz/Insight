@@ -41,10 +41,21 @@
 
                 <md-input-container flex>
                     <label>Team 2</label>
-                    <input ng-model="ctrl.game.team2"
+                    <input class="md-accent"
+                           ng-model="ctrl.game.team2"
                            ng-model-options="{ updateOn: 'default blur', debounce: { 'default': 500, 'blur': 0 } }"
                            ng-change="ctrl.updateGame()">
                 </md-input-container>
+            </div>
+
+            <div ui-view
+                 layout="row" layout-align="center center" layout-padding>
+                <md-button class="md-raised md-primary"
+                           ui-sref=".selectTeam">
+
+                    Start recording
+
+                </md-button>
             </div>
         </div>
     </section>
