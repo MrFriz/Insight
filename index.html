@@ -1,0 +1,39 @@
+<html ng-app="insight" ng-strict-di>
+<head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Stats</title>
+
+    <style type="text/css">
+        .wireframe {
+            position: relative;
+            top: 10em;
+        }
+
+        .wireframe h1 {
+            font-size: 6em;
+            text-align: center;
+            font-family: -apple-system, ".SFNSText-Regular", "San Francisco", "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", sans-serif;
+        }
+    </style>
+</head>
+<body >
+
+<div ui-view>
+    <div class="wireframe">
+        <h1>Loading...</h1>
+    </div>
+</div>
+
+
+</body>
+
+<script src="vendor.bundle.js"></script>
+<script src="bundle.js"></script>
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+</html>
