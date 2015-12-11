@@ -7,47 +7,65 @@ directive(
         function InVideoController($scope, $element) {
             'ngInject';
 
-            $scope.videoSelected = false;
+            this._scope = $scope;
+            this._element = $element;
 
-            this.input = $element.find('input')[0];
-            this.video = $element.find('video')[0];
+            this.videoSelected = false;
 
-            if (!this.input) {
-                throw new Error('Unable to find input element from template');
+            this._input = this._element.find('input');
+            this._video = this._element.find('video');
+
+            if (!this._input[0]) {
+                throw new Error('Unable to find _input element from template');
             }
 
-            if (!this.video) {
-                throw new Error('Unable to find video element from template');
+            if (!this._video[0]) {
+                throw new Error('Unable to find _video element from template');
             }
 
-            this.input.onchange = () => {
+            this._video.on('timeupdate', (event) => {
+                this._timeUpdate(event);
+            });
 
-                if (!this.input.files[0]) {
+            this._input.on('change', () => {
+
+                if (!this._input[0].files[0]) {
+
+                    console.log(this._input);
                     return $log.warn('no file');
                 }
 
-                var file = this.input.files[0]
+                var file = this._input[0].files[0]
                 try {
-                    this.video.src = URL.createObjectURL(file);
-                    $scope.videoSelected = true;
-                    $scope.$digest();
+
+                    this._video[0].src = URL.createObjectURL(file);
+                    this.videoSelected = true;
+                    this._scope.$digest();
                 }
                 catch (err) {
                     $log.error('can\'t get file', err);
                 }
-            };
+            });
         }
 
-        InVideoController.prototype.play = function() {
-            this.video.play();
+        InVideoController.prototype._timeUpdate = function (event) {
+            if (angular.isFunction(this._scope.timeUpdate)) {
+                this._scope.timeUpdate(event.target.currentTime);
+            }
         };
 
-        InVideoController.prototype.pause = function() {
-            this.video.pause();
+        InVideoController.prototype.play = function () {
+            this._video[0].play();
+        };
+
+        InVideoController.prototype.pause = function () {
+            this._video[0].pause();
         };
 
         return {
-            scope: {},
+            scope: {
+                timeUpdate: '='
+            },
             template: require('./inVideoFile.html'),
             replace: false,
             controller: InVideoController,
@@ -56,4 +74,4 @@ directive(
     }
 );
 
-module.exports = 'in-video-html';
+module.exports = 'in-_video-html';

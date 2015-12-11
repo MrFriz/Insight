@@ -1,0 +1,14 @@
+<div flex class="md-whiteframe-1dp">
+    <p class="md-title">Pulling Team ?</p>
+
+    <!--<p>{{ctrl.game}}</p>-->
+
+    <md-button class="md-raised"
+               ng-click="ctrl.selectTeam(this.ctrl.game.team1)">
+        {{this.ctrl.game.team1 || 'Team 1'}}
+    </md-button>
+    <md-button class="md-raised"
+               ng-click="ctrl.selectTeam(this.ctrl.game.team2)">
+        {{this.ctrl.game.team2 || 'Team 2'}}
+    </md-button>
+</div>

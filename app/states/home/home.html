@@ -58,39 +58,39 @@
     </div>
 
     <div flex class="md-whiteframe-4dp">
-        <div layout="row" layout-align="space-between center">
-            <h3 class="md-headline">Teams</h3>
-            <md-divider></md-divider>
-            <form ng-submit="ctrl.createTeam(newTeamName)">
-                <md-input-container>
-                    <label>Team name</label>
-                    <input ng-model="newTeamName" type="text">
-                </md-input-container>
-                <md-button class="md-fab md-button md-primary md-ink-ripple"
-                           ng-click="ctrl.createTeam(newTeamName)">
-                    <md-icon>add</md-icon>
-                </md-button>
-            </form>
-        </div>
+        <!--<div layout="row" layout-align="space-between center">-->
+            <!--<h3 class="md-headline">Teams</h3>-->
+            <!--<md-divider></md-divider>-->
+            <!--<form ng-submit="ctrl.createTeam(newTeamName)">-->
+                <!--<md-_input-container>-->
+                    <!--<label>Team name</label>-->
+                    <!--<_input ng-model="newTeamName" type="text">-->
+                <!--</md-_input-container>-->
+                <!--<md-button class="md-fab md-button md-primary md-ink-ripple"-->
+                           <!--ng-click="ctrl.createTeam(newTeamName)">-->
+                    <!--<md-icon>add</md-icon>-->
+                <!--</md-button>-->
+            <!--</form>-->
+        <!--</div>-->
 
-        <md-list ng-if="games && games.length > 0" role="gamesList">
-            <!--<md-subheader class="md-no-sticky">Previous games</md-subheader>-->
-            <md-list-item ng-repeat="team in teams | orderBy:'-create'"
-                          ng-click="ctrl.openTeam(team._id)"
-                          class="md-3-line md-no-proxy">
-                <md-icon class="md-avatar">face</md-icon>
+        <!--<md-list ng-if="games && games.length > 0" role="gamesList">-->
+            <!--&lt;!&ndash;<md-subheader class="md-no-sticky">Previous games</md-subheader>&ndash;&gt;-->
+            <!--<md-list-item ng-repeat="team in teams | orderBy:'-create'"-->
+                          <!--ng-click="ctrl.openTeam(team._id)"-->
+                          <!--class="md-3-line md-no-proxy">-->
+                <!--<md-icon class="md-avatar">face</md-icon>-->
 
-                <div class="md-list-item-text">
-                    <h3> {{ team._id }}</h3>
-                    <h4> {{ team.create | date:'medium'}} </h4>
-                </div>
+                <!--<div class="md-list-item-text">-->
+                    <!--<h3> {{ team._id }}</h3>-->
+                    <!--<h4> {{ team.create | date:'medium'}} </h4>-->
+                <!--</div>-->
 
-                <md-button aria-label="delete" class="md-secondary md-warn md-raised"
-                           ng-click="ctrl.deleteTeam($event, team._id)">
-                    <md-icon>delete</md-icon>
-                </md-button>
-            </md-list-item>
-        </md-list>
+                <!--<md-button aria-label="delete" class="md-secondary md-warn md-raised"-->
+                           <!--ng-click="ctrl.deleteTeam($event, team._id)">-->
+                    <!--<md-icon>delete</md-icon>-->
+                <!--</md-button>-->
+            <!--</md-list-item>-->
+        <!--</md-list>-->
     </div>
 
 </md-content>

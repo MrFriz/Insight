@@ -15,7 +15,8 @@ directive(
 
             createFilterFor(query) {
                 return function filterFn(state) {
-                    return (state._id.indexOf(query) === 0);
+                    console.log('FilterFor', query, state, state.indexOf(query) === 0);
+                    return (state.indexOf(query) === 0);
                 };
             }
 

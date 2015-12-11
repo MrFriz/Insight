@@ -94,13 +94,20 @@ function dataStoreFactory($q, $log) {
 
         _put(doc) {
 
-            if (!doc._id) {
+            var query;
+
+            if (!doc._rev) {
                 $log.debug('post', doc);
-                return $q.when(this._db.post(doc));
+                query = $q.when(this._db.post(doc));
+            }
+            else {
+                query = $q.when(this._db.put(doc))
             }
 
             $log.debug('put', doc);
-            return $q.when(this._db.put(doc));
+            return $q.when(query.then((res) => {
+                return this._db.get(res.id)
+            }));
         }
 
         createGame(game) {
@@ -109,21 +116,15 @@ function dataStoreFactory($q, $log) {
                 create: new Date()
             });
 
-            return this._put(_game)
-                .then((res) => {
-                    return this.games(res.id);
-                })
+            return this._put(_game);
         }
 
         createTeam(name) {
             return this._put({
-                    _id: name,
-                    type: 'team',
-                    create: new Date()
-                })
-                .then((res) => {
-                    return this.teams(res.id);
-                })
+                _id: name,
+                type: 'team',
+                create: new Date()
+            })
         }
 
         remove(doc) {
