@@ -22,44 +22,45 @@
     <section flex ui-view>
         <div layout="column" layout-padding>
 
+            <div layout="row" layout-margin layout-align="space-around center">
 
-            <div layout="row" layout-margin layout-align="space-arround center">
-                <in-select
-                    placeholder="Team 1"
-                    createNew="createNewTeam"
-                    dataset="ctrl.teams"
-                    item="team1"
-                    itemChanged="{{ctrl.updateTeam(team1, false)}}">
-                </in-select>
+                <md-input-container flex>
+                    <label>Team 1</label>
+                    <input
+                        ng-model="ctrl.game.team1"
+                        ng-model-options="{ updateOn: 'default blur', debounce: { 'default': 500, 'blur': 0 } }"
+                        ng-change="ctrl.updateGame()">
+                </md-input-container>
 
                 <div>VS</div>
-                <in-select
-                    placeholder="Team 2"
-                    createNew="createNewTeam"
-                    dataset="ctrl.teams"
-                    item="team2"
-                    itemChanged="{{ctrl.updateTeam(team2, true)}}">
-                </in-select>
+
+                <md-input-container flex>
+                    <label>Team 2</label>
+                    <input ng-model="ctrl.game.team2"
+                           ng-model-options="{ updateOn: 'default blur', debounce: { 'default': 500, 'blur': 0 } }"
+                           ng-change="ctrl.updateGame()">
+                </md-input-container>
+
             </div>
             <md-button class="md-raised md-primary">Start</md-button>
         </div>
 
 
         <!--<div ng-cloak>-->
-            <!--<md-content>-->
-                <!--<md-tabs md-dynamic-height md-border-bottom class="md-accent">-->
-                    <!--<md-tab label="Offense">-->
-                        <!--<md-content class="md-padding">-->
-                            <!--<in-team></in-team>-->
-                        <!--</md-content>-->
-                    <!--</md-tab>-->
-                    <!--<md-tab label="Defense">-->
-                        <!--<md-content class="md-padding">-->
-                            <!--<in-team></in-team>-->
-                        <!--</md-content>-->
-                    <!--</md-tab>-->
-                <!--</md-tabs>-->
-            <!--</md-content>-->
+        <!--<md-content>-->
+        <!--<md-tabs md-dynamic-height md-border-bottom class="md-accent">-->
+        <!--<md-tab label="Offense">-->
+        <!--<md-content class="md-padding">-->
+        <!--<in-team></in-team>-->
+        <!--</md-content>-->
+        <!--</md-tab>-->
+        <!--<md-tab label="Defense">-->
+        <!--<md-content class="md-padding">-->
+        <!--<in-team></in-team>-->
+        <!--</md-content>-->
+        <!--</md-tab>-->
+        <!--</md-tabs>-->
+        <!--</md-content>-->
         <!--</div>-->
     </section>
 
