@@ -1,8 +1,8 @@
 <div class="inVideoFile" layout="row" layout-align="center center" ng-class="{videoPlayer: videoSelected}">
-    <input type="file" ng-hide="videoSelected">
-    <video ng-show="videoSelected" controls autoplay></video>
+    <input type="file" ng-hide="ctrl.videoSelected">
+    <video ng-show="ctrl.videoSelected" controls autoplay></video>
 </div>
 <div>
-    <md-button ng-click="ctrl.play()" ng-disabled="!videoSelected">Play</md-button>
-    <md-button ng-click="ctrl.pause()"  ng-disabled="!videoSelected">Pause</md-button>
+    <md-button ng-click="ctrl.play()" ng-disabled="!ctrl.videoSelected">Play</md-button>
+    <md-button ng-click="ctrl.pause()"  ng-disabled="!ctrl.videoSelected">Pause</md-button>
 </div>

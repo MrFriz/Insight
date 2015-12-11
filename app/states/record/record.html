@@ -15,15 +15,20 @@
 
     <section flex="60" layout-align="center center">
         <in-video-file
+            time-update="updateTime"
+            time="time"
             flex="75">
         </in-video-file>
+
+        <h1>Time :
+            {{time | number:2}} </h1>
     </section>
 
-    <section flex ui-view>
+
+    <section flex>
         <div layout="column" layout-padding>
 
             <div layout="row" layout-margin layout-align="space-around center">
-
                 <md-input-container flex>
                     <label>Team 1</label>
                     <input
@@ -40,28 +45,8 @@
                            ng-model-options="{ updateOn: 'default blur', debounce: { 'default': 500, 'blur': 0 } }"
                            ng-change="ctrl.updateGame()">
                 </md-input-container>
-
             </div>
-            <md-button class="md-raised md-primary">Start</md-button>
         </div>
-
-
-        <!--<div ng-cloak>-->
-        <!--<md-content>-->
-        <!--<md-tabs md-dynamic-height md-border-bottom class="md-accent">-->
-        <!--<md-tab label="Offense">-->
-        <!--<md-content class="md-padding">-->
-        <!--<in-team></in-team>-->
-        <!--</md-content>-->
-        <!--</md-tab>-->
-        <!--<md-tab label="Defense">-->
-        <!--<md-content class="md-padding">-->
-        <!--<in-team></in-team>-->
-        <!--</md-content>-->
-        <!--</md-tab>-->
-        <!--</md-tabs>-->
-        <!--</md-content>-->
-        <!--</div>-->
     </section>
 
 </div>
